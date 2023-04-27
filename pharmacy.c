@@ -112,13 +112,13 @@ void pharm_imprime(Pharm *l)
     }
 }
 
-Lista2 *lst_busca(Lista2 *l, int v)
+Pharm *pharm_busca(Pharm *l, int cod)
 {
 
-    Lista2 *p;
+    Pharm *p;
     for (p = l; p != NULL; p = p->prox)
     {
-        if (p->info == v)
+        if (p->codigo == cod)
             return p;
     }
     return NULL;
