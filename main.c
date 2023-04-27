@@ -1,4 +1,4 @@
-#include"pharmacy.c"
+#include "pharmacy.c"
 
 int main(void)
 {
