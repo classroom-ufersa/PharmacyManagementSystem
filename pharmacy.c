@@ -124,9 +124,9 @@ Pharm *pharm_busca(Pharm *l, int cod)
     return NULL;
 }
 
-Lista2 *lst_retira(Lista2 *l, int v)
+Pharm *Pharm_retira(Pharm *l, int v)
 {
-    Lista2 *p = lst_busca(l, v);
+    Pharm *p = pharm_busca(l, v);
 
     if (p->prox != NULL)
         p->prox->ant = p->ant;
