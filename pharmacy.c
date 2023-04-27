@@ -14,14 +14,6 @@ char horario
 typedef struct pharmacy Pharm;
 
 
-struct medicamento{
-char nome[50];
-int dosagem;
-char data;
-float preco;
-char recomendacao[50];
-};
-typedef struct medicamento Med;
 
 void combSort(char lista[][50], int n)
 {
