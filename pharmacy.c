@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "pharmacy.h"
+#include "med.c"
 #include <ctype.h>
 
 struct pharmacy {
@@ -9,7 +10,10 @@ char nome[50];
 int codigo;
 char localizacao[50];
 int num_med;
-char horario
+char horario[50];
+Med * med;
+Pharm * ant;
+Pharm * prox;
 };
 typedef struct pharmacy Pharm;
 
@@ -80,6 +84,52 @@ int contador()
     return (numLinhas);
 }
 
+Pharm* lst_insere(Pharm *p, char name[50], int cod, char loc[50], char horario[50]){
+
+    Pharm* novo = (Pharm*) malloc(sizeof(Pharm));
+    *novo->nome = name;
+    novo->codigo = cod;
+    *novo->localizacao = loc;
+    novo->num_med = 0;
+    *novo->horario = horario;
+    novo->prox = p;
+    novo->ant = NULL;
+    if(p!=NULL)
+        p->ant = novo;
+    return novo;
+}
 
 
-  
+void lst_imprime(Lista2*l){
+	Lista2*p;
+	for(p=l; p!=NULL; p=p->prox){
+		printf(" Info = %d \n", p->info);
+	}
+
+}
+
+Lista2* lst_busca(Lista2 *l, int v){
+
+    Lista2 *p;
+    for(p=l; p!=NULL; p=p->prox){
+        if(p->info ==v)
+			return p;
+    }
+    return NULL;
+
+}
+
+Lista2* lst_retira(Lista2 *l, int v){
+    Lista2* p = lst_busca(l,v);
+
+    if(p->prox!=NULL)
+        p->prox->ant=p->ant;
+    if(l==NULL)
+        return l;
+    if(p==l)
+        l=p->prox;
+    else
+        p->ant->prox = p->prox;
+    return l;
+
+}
