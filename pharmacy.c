@@ -84,7 +84,7 @@ int contador()
     return (numLinhas);
 }
 
-Pharm* lst_insere(Pharm *p, char name[50], int cod, char loc[50], char horario[50]){
+Pharm* pharm_insere(Pharm *p, char name[50], int cod, char loc[50], char horario[50]){
 
     Pharm* novo = (Pharm*) malloc(sizeof(Pharm));
     *novo->nome = name;
