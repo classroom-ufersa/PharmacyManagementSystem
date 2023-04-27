@@ -3,7 +3,7 @@
 int main(void)
 {
     int opc;
-    Aluno * alunos = 0;
+    Med * medicamento = 0;
     FILE* teste;
     char remedios[20][50];
     int qnt_linhas;
