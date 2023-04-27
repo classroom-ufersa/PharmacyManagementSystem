@@ -19,7 +19,7 @@ char nome[50];
 int dosagem;
 char data;
 float preco;
-char recomendacao;
+char recomendacao[50];
 };
 typedef struct medicamento Med;
 
@@ -53,7 +53,7 @@ void combSort(char lista[][50], int n)
         }
     }
 
-abrir = fopen("Alunos.txt", "wt");
+abrir = fopen("pharmacy.txt", "wt");
 
     while (controle < n)
     {
@@ -71,7 +71,7 @@ int contador()
     char linha[100];
     int numLinhas = 0;
 
-    abre = fopen("Alunos.txt", "rt");
+    abre = fopen("pharmacy.txt", "rt");
     if (abre == NULL)
     {
         printf("ERRO ao abrir o arquivo!");
