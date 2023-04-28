@@ -18,70 +18,70 @@ struct pharmacy
 };
 typedef struct pharmacy Pharm;
 
-void combSort(char lista[][50], int n)
-{
-    FILE *abrir;
-    int lacuna = n;
-    int trocado = 1;
-    int i, j;
-    char temp[50];
-    int controle = 0;
+// void combSort(char lista[][50], int n)
+// {
+//     FILE *abrir;
+//     int lacuna = n;
+//     int trocado = 1;
+//     int i, j;
+//     char temp[50];
+//     int controle = 0;
 
-    while (lacuna > 1 || trocado == 1)
-    { // c5*n
-        lacuna = lacuna / 1.3;
-        if (lacuna < 1)
-        {
-            lacuna = 1;
-        }
+//     while (lacuna > 1 || trocado == 1)
+//     { // c5*n
+//         lacuna = lacuna / 1.3;
+//         if (lacuna < 1)
+//         {
+//             lacuna = 1;
+//         }
 
-        trocado = 0;
-        for (i = 0, j = i + lacuna; j < n; i++, j++)
-        { // n*n
-            if (strcmp(lista[i], lista[j]) > 0)
-            {
-                strcpy(temp, lista[i]);
-                strcpy(lista[i], lista[j]);
-                strcpy(lista[j], temp);
-                trocado = 1;
-            }
-        }
-    }
+//         trocado = 0;
+//         for (i = 0, j = i + lacuna; j < n; i++, j++)
+//         { // n*n
+//             if (strcmp(lista[i], lista[j]) > 0)
+//             {
+//                 strcpy(temp, lista[i]);
+//                 strcpy(lista[i], lista[j]);
+//                 strcpy(lista[j], temp);
+//                 trocado = 1;
+//             }
+//         }
+//     }
 
-    abrir = fopen("pharmacy.txt", "wt");
+//     abrir = fopen("pharmacy.txt", "wt");
 
-    while (controle < n)
-    {
-        fprintf(abrir, "%s", lista[controle]);
-        controle++;
-    }
+//     while (controle < n)
+//     {
+//         fprintf(abrir, "%s", lista[controle]);
+//         controle++;
+//     }
 
-    fclose(abrir);
-}
+//     fclose(abrir);
+// }
 
-int contador()
-{
+// int contador()
+// {
 
-    FILE *abre;
-    char linha[100];
-    int numLinhas = 0;
+//     FILE *abre;
+//     char linha[100];
+//     int numLinhas = 0;
 
-    abre = fopen("pharmacy.txt", "rt");
-    if (abre == NULL)
-    {
-        printf("ERRO ao abrir o arquivo!");
-        exit(1);
-    }
+//     abre = fopen("pharmacy.txt", "rt");
+//     if (abre == NULL)
+//     {
+//         printf("ERRO ao abrir o arquivo!");
+//         exit(1);
+//     }
 
-    while (fgets(linha, 100, abre) != NULL)
-    {
-        numLinhas++;
-    }
+//     while (fgets(linha, 100, abre) != NULL)
+//     {
+//         numLinhas++;
+//     }
 
-    fclose(abre);
+//     fclose(abre);
 
-    return (numLinhas);
-}
+//     return (numLinhas);
+// }
 
 Pharm *pharm_insere(Pharm *p, char name[50], int cod, char loc[50], char horario[50])
 {
@@ -104,9 +104,9 @@ void pharm_imprime(Pharm *l)
     Pharm *p;
     for (p = l; p != NULL; p = p->prox)
     {
-        printf(" Código da farmacia = %d \n", p->codigo);
+        printf(" Codigo da farmacia = %d \n", p->codigo);
         printf(" Nome da farmacia = %d \n", p->nome);
-        printf(" Localização da farmacia = %d \n", p->localizacao);
+        printf(" Localizacao da farmacia = %d \n", p->localizacao);
         printf(" Estoque da farmacia = %d \n", p->num_med);
         printf(" Horario de funcionamento = %d \n", p->horario);
     }
