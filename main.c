@@ -13,6 +13,8 @@ int main(void)
     char localizacao[50];
     char horario[50];
 
+    int code; 
+
     while (x != 1)
     {
 
@@ -23,16 +25,20 @@ int main(void)
         {
         case 1:
             printf("Para cadastra uma farmacia no sistema:\ninfome o nome da farmacia:\n");
-            scanf("%s", nome);
+            scanf(" %[^\n]", nome);
             printf("Informe o codigo da farmacia:\n");
-            scanf("%d",&codigo);
-            printf("informe a localizacao:\n");
-            scanf("%s", localizacao);
+            scanf("%d", &codigo);
+            printf("Informe a localizacao:\n");
+            scanf(" %[^\n]", localizacao);
             printf("Informe o horario de funcionamento:\n");
-            scanf("%s", horario);
+            scanf(" %[^\n]", horario);
             farmacia = pharm_insere(farmacia, nome, codigo, localizacao, horario);
             break;
         case 4://to botando na 4 só para testar
+            fflush(stdin);
+            printf("informe o codigo da farmacia que deseja verificar:\n");
+            scanf("%d", &code);
+            farmacia = pharm_busca(farmacia, code);
             pharm_imprime(farmacia);
             break;
         case 9:

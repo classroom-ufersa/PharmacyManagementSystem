@@ -7,8 +7,8 @@
 
 struct pharmacy
 {
-    char nome[50];
     int codigo;
+    char nome[50];
     char localizacao[50];
     int num_med;
     char horario[50];
@@ -87,29 +87,27 @@ Pharm *pharm_insere(Pharm *p, char name[50], int cod, char loc[50], char horario
 {
 
     Pharm *novo = (Pharm *)malloc(sizeof(Pharm));
-    *novo->nome = name;
+        
+    strcpy(novo->nome, name);
     novo->codigo = cod;
-    *novo->localizacao = loc;
+    strcpy(novo->localizacao, loc);
     novo->num_med = 0;
-    *novo->horario = horario;
+    strcpy(novo->horario, horario);
     novo->prox = p;
     novo->ant = NULL;
+    novo->med = NULL;
     if (p != NULL)
         p->ant = novo;
     return novo;
 }
 
-void pharm_imprime(Pharm *l)
+void pharm_imprime(Pharm *p)
 {
-    Pharm *p;
-    for (p = l; p != NULL; p = p->prox)
-    {
         printf(" Codigo da farmacia = %d \n", p->codigo);
-        printf(" Nome da farmacia = %d \n", p->nome);
-        printf(" Localizacao da farmacia = %d \n", p->localizacao);
+        printf(" Nome da farmacia = %s \n", p->nome);
+        printf(" Localizacao da farmacia = %s \n", p->localizacao);
         printf(" Estoque da farmacia = %d \n", p->num_med);
-        printf(" Horario de funcionamento = %d \n", p->horario);
-    }
+        printf(" Horario de funcionamento = %s \n", p->horario);
 }
 
 Pharm *pharm_busca(Pharm *l, int cod)
