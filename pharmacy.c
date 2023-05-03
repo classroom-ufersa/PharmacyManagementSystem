@@ -18,7 +18,7 @@ struct pharmacy
 };
 typedef struct pharmacy Pharm;
 
-void combsort(char lista[][100], int n)
+void combsort(char lista[20][100], int n)
 {
     FILE *abrir;
     int lacuna = n;

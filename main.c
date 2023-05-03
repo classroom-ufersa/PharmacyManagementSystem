@@ -52,7 +52,7 @@ int main(void)
         case 4: // to botando na 4 só para testar
             fflush(stdin);
             printf("informe o codigo da farmacia que deseja verificar:\n");
-            scanf(" %[^\n]", &code);
+            scanf(" %[^\n]", code);
             farmacia = pharm_busca(farmacia, code);
             pharm_imprime(farmacia);
             break;
