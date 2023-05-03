@@ -6,22 +6,22 @@ int main(void)
     Pharm *farmacia;
     Med *medicamento = 0;
     FILE *teste;
-    char pharmacy[20][50];
-    int qnt_linhas;//Pharm* pharm_insere(Pharm *p, char name[50], int cod, char loc[50], char horario[50]);
+    char pharmacy[20][100];
+    int qnt_linhas; // Pharm* pharm_insere(Pharm *p, char name[50], int cod, char loc[50], char horario[50]);
     char nome[50];
     char codigo[50];
     char localizacao[50];
     char horario[50];
 
-    char code[50]; 
+    char code[50];
 
     while (x != 1)
     {
 
-        printf("\nSistema de Gerenciamento de farmacia de medicamentos\n1. Adicionar farmacia\n2. Adicionar medicamento;\n3. Remover medicamento;\n4. Listar medicamentos cadastrados;\n5. Buscar medicamentos;\n6. Editar medicamento;\n7. Consultar medicamento em uma dada farmacia;\n8. consultar quantitativo de farmacia;\n9. sair\n");
+        printf("\nSistema de Gerenciamento de farmacia de medicamentos\n\n1. Adicionar farmacia\n2. Adicionar medicamento;\n3. Remover medicamento;\n4. Listar medicamentos cadastrados;\n5. Buscar medicamentos;\n6. Editar medicamento;\n7. Consultar medicamento em uma dada farmacia;\n8. consultar quantitativo de farmacia;\n9. sair\n");
         scanf("%d", &opc);
         switch (opc)
-            
+
         {
         case 1:
             printf("Para cadastra uma farmacia no sistema:\ninfome o nome da farmacia:\n");
@@ -33,8 +33,23 @@ int main(void)
             printf("Informe o horario de funcionamento:\n");
             scanf(" %[^\n]", horario);
             farmacia = pharm_insere(farmacia, nome, codigo, localizacao, horario);
+
+            qnt_linhas = contador();
+
+            int i = 0;
+
+            teste = fopen("Pharmacy.txt", "rt");
+
+            while (i < qnt_linhas)
+            {
+                fgets(pharmacy[i], 100, teste);
+                i++;
+            }
+
+            combSort(pharmacy, qnt_linhas);
+
             break;
-        case 4://to botando na 4 só para testar
+        case 4: // to botando na 4 só para testar
             fflush(stdin);
             printf("informe o codigo da farmacia que deseja verificar:\n");
             scanf(" %[^\n]", &code);
@@ -47,7 +62,7 @@ int main(void)
             break;
         default:
             system("cls");
-           printf("\ninforme um valor valido!\n\n");
+            printf("\ninforme um valor valido!\n\n");
             break;
         }
     }

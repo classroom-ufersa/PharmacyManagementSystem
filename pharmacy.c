@@ -18,7 +18,7 @@ struct pharmacy
 };
 typedef struct pharmacy Pharm;
 
-void combsort(char lista[][50], int n)
+void combsort(char lista[][100], int n)
 {
     FILE *abrir;
     int lacuna = n;
@@ -97,7 +97,18 @@ Pharm *pharm_insere(Pharm *p, char name[50], char cod[50], char loc[50], char ho
     novo->ant = NULL;
     novo->med = NULL;
     if (p != NULL)
+    {
         p->ant = novo;
+    }
+
+    FILE *pharmacy_txt;
+
+    pharmacy_txt = fopen("Pharmacy.txt", "at");
+
+    fprintf(pharmacy_txt, "Nome: %s\tCodigo: %s\tLocalização: %s\thorario de funcionammento: %s\tEstoque: %d\n", p->nome, p->codigo, p->localizacao, p->horario, p->num_med);
+
+    fclose(pharmacy_txt);
+
     return novo;
 }
 
