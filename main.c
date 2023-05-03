@@ -9,11 +9,11 @@ int main(void)
     char pharmacy[20][50];
     int qnt_linhas;//Pharm* pharm_insere(Pharm *p, char name[50], int cod, char loc[50], char horario[50]);
     char nome[50];
-    int codigo;
+    char codigo[50];
     char localizacao[50];
     char horario[50];
 
-    int code; 
+    char code[50]; 
 
     while (x != 1)
     {
@@ -27,7 +27,7 @@ int main(void)
             printf("Para cadastra uma farmacia no sistema:\ninfome o nome da farmacia:\n");
             scanf(" %[^\n]", nome);
             printf("Informe o codigo da farmacia:\n");
-            scanf("%d", &codigo);
+            scanf(" %[^\n]", codigo);
             printf("Informe a localizacao:\n");
             scanf(" %[^\n]", localizacao);
             printf("Informe o horario de funcionamento:\n");
@@ -37,7 +37,7 @@ int main(void)
         case 4://to botando na 4 só para testar
             fflush(stdin);
             printf("informe o codigo da farmacia que deseja verificar:\n");
-            scanf("%d", &code);
+            scanf(" %[^\n]", &code);
             farmacia = pharm_busca(farmacia, code);
             pharm_imprime(farmacia);
             break;
