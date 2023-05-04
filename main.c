@@ -34,20 +34,6 @@ int main(void)
             scanf(" %[^\n]", horario);
             farmacia = pharm_insere(farmacia, nome, codigo, localizacao, horario);
 
-            qnt_linhas = contador();
-
-            int i = 0;
-
-            teste = fopen("Pharmacy.txt", "rt");
-
-            while (i < qnt_linhas)
-            {
-                fgets(pharmacy[i], 100, teste);
-                i++;
-            }
-
-            combSort(pharmacy, qnt_linhas);
-
             break;
         case 4: // to botando na 4 só para testar
             fflush(stdin);
@@ -66,6 +52,18 @@ int main(void)
             break;
         }
     }
+    qnt_linhas = contador();
 
+    int i = 0;
+
+    teste = fopen("Pharmacy.txt", "rt");
+
+    while (i < qnt_linhas)
+    {
+        fgets(pharmacy[i], 100, teste);
+        i++;
+    }
+
+    combSort(pharmacy, qnt_linhas);
     return 0;
 }

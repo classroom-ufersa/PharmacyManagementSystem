@@ -24,7 +24,7 @@ void combsort(char lista[20][100], int n)
     int lacuna = n;
     int trocado = 1;
     int i, j;
-    char temp[50];
+    char temp[100];
     int controle = 0;
 
     while (lacuna > 1 || trocado == 1)
@@ -87,6 +87,10 @@ Pharm *pharm_insere(Pharm *p, char name[50], char cod[50], char loc[50], char ho
 {
 
     Pharm *novo = (Pharm *)malloc(sizeof(Pharm));
+    if(novo==NULL){
+        printf("erro, por favor tente novamente");
+        exit(1);
+    }
         
     strcpy(novo->nome, name);
     strcpy(novo->codigo, cod);
@@ -105,7 +109,7 @@ Pharm *pharm_insere(Pharm *p, char name[50], char cod[50], char loc[50], char ho
 
     pharmacy_txt = fopen("Pharmacy.txt", "at");
 
-    fprintf(pharmacy_txt, "Nome: %s\tCodigo: %s\tLocalização: %s\thorario de funcionammento: %s\tEstoque: %d\n", p->nome, p->codigo, p->localizacao, p->horario, p->num_med);
+    fprintf(pharmacy_txt, "Nome: %s\tCodigo: %s\tLocalização: %s\thorario de funcionammento: %s\tEstoque: %d\n", novo->nome, novo->codigo, novo->localizacao, novo->horario, novo->num_med);
 
     fclose(pharmacy_txt);
 
