@@ -14,7 +14,7 @@ Med* ant;
 Med * prox;
 };
 
-void combsort(char lista[20][100], int n)
+void combsort_med(char lista[20][100], int n)
 {
     FILE *abrir;
     int lacuna = n;
@@ -44,18 +44,18 @@ void combsort(char lista[20][100], int n)
         }
     }
 
-    abrir = fopen("pharmacy.txt", "wt");
+    // abrir = fopen("pharmacy.txt", "wt");
 
-    while (controle < n)
-    {
-        fprintf(abrir, "%s", lista[controle]);
-        controle++;
-    }
+    // while (controle < n)
+    // {
+    //     fprintf(abrir, "%s", lista[controle]);
+    //     controle++;
+    // }
 
-    fclose(abrir);
+    // fclose(abrir);
 }
 
-int Contador()
+int contador_med()
 {
 
     FILE *abre;
@@ -83,7 +83,7 @@ Med *med_insere(Med *p, char name[50], char dose[50], char data[10], float preco
 {
 
     Med *new = (Med *)malloc(sizeof(Med));
-    if(novo==NULL){
+    if(new==NULL){
         printf("erro, por favor tente novamente");
         exit(1);
     }
@@ -91,7 +91,6 @@ Med *med_insere(Med *p, char name[50], char dose[50], char data[10], float preco
     strcpy(new->nome, name);
     strcpy(new->dosagem, dose);
     strcpy(new->data, data);
-    novo->num_med += 1;
     strcpy(new->preco, preco);
     strcpy(new->recomendacao, recomendacao);
     new->prox = p;
@@ -100,7 +99,8 @@ Med *med_insere(Med *p, char name[50], char dose[50], char data[10], float preco
     {
         new->ant = novo;
     }
-
+    pharm_busca
+    novo->num_med += 1;
     // FILE *pharmacy_txt;
 
     // pharmacy_txt = fopen("Pharmacy.txt", "at");
@@ -121,20 +121,21 @@ void med_imprime(Med *p)
         printf(" Recomendacao: %s \n", p->recomendacao);
 }
 
-Pharm *pharm_busca(Pharm *l, char cod[50])
+Med *med_busca(Med *l, char nome[50])
 {
-    Pharm *p;
+    Med *p;
     for (p = l; p != NULL; p = p->prox)
     {
-        if (strcmp(p->codigo, cod) == 0)
+        if (strcmp(p->nome, nome) == 0)
             return p;
     }
     return NULL;
 }
 
-Pharm *Pharm_retira(Pharm *l, char v[50])
+Med *med_retira(Med *l, char v[50])
 {
-    Pharm *p = pharm_busca(l, v);
+    Med *p = med_busca(l, v);
+    
 
     if (p->prox != NULL)
         p->prox->ant = p->ant;

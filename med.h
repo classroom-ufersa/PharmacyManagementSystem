@@ -1,2 +1,8 @@
 typedef struct medicamento Med;
-void combSort(char lista[][50], int n);
+
+Med* med_insere(Med *p, char name[50], char dose[50], char data[10], float preco[50], char recomendacao[50]);
+Med *med_busca(Med *l, char nome[50]);
+Med *med_retira(Med *l, char v[50]);
+void med_imprime(Med *l);
+int contador();
+void combsort(char lista[20][100], int n);

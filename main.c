@@ -64,6 +64,6 @@ int main(void)
         i++;
     }
 
-    combSort(pharmacy, qnt_linhas);
+    combSort_ph(pharmacy, qnt_linhas);
     return 0;
 }
