@@ -100,9 +100,9 @@ Pharm *pharm_insere(Pharm *p, char name[50], char cod[50], char loc[50], char ho
     novo->prox = p;
     novo->ant = NULL;
     novo->med = NULL;
-    if (p != NULL)
+    if (novo != NULL)
     {
-        p->ant = novo;
+        novo->ant = novo;
     }
 
     FILE *pharmacy_txt;
