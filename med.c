@@ -79,28 +79,28 @@ int contador_med()
     return (numLinhas);
 }
 
-Med *med_insere(Med *p, char name[50], char dose[50], char data[10], float preco[50], char recomendacao[50])
+Med *med_insere(Pharm * ph, Med *p, char name[50], char dose[50], char data[10], float preco, char recomendacao[50])
 {
 
     Med *new = (Med *)malloc(sizeof(Med));
     if(new==NULL){
-        printf("erro, por favor tente novamente");
+        printf("erro, por favor tente novamente!");
         exit(1);
     }
         
     strcpy(new->nome, name);
     strcpy(new->dosagem, dose);
     strcpy(new->data, data);
-    strcpy(new->preco, preco);
+    new->preco = preco;
     strcpy(new->recomendacao, recomendacao);
     new->prox = p;
     new->ant = NULL;
     if (p != NULL)
     {
-        new->ant = novo;
+        new->ant = new;
     }
-    pharm_busca
-    novo->num_med += 1;
+    ph->num_med += 1;
+    
     // FILE *pharmacy_txt;
 
     // pharmacy_txt = fopen("Pharmacy.txt", "at");
@@ -109,7 +109,7 @@ Med *med_insere(Med *p, char name[50], char dose[50], char data[10], float preco
 
     // fclose(pharmacy_txt);
 
-    return novo;
+    return new;
 }
 
 void med_imprime(Med *p)
