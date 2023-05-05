@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "med.h"
-#include "pharmacy.c"
 #include <ctype.h>
 
 struct medicamento{
@@ -15,72 +14,72 @@ Med* ant;
 Med * prox;
 };
 
-void combsort_med(char lista[20][100], int n)
-{
-    FILE *abrir;
-    int lacuna = n;
-    int trocado = 1;
-    int i, j;
-    char temp[100];
-    int controle = 0;
+// void combsort_med(char lista[20][100], int n)
+// {
+//     FILE *abrir;
+//     int lacuna = n;
+//     int trocado = 1;
+//     int i, j;
+//     char temp[100];
+//     int controle = 0;
 
-    while (lacuna > 1 || trocado == 1)
-    { // c5*n
-        lacuna = lacuna / 1.3;
-        if (lacuna < 1)
-        {
-            lacuna = 1;
-        }
+//     while (lacuna > 1 || trocado == 1)
+//     { // c5*n
+//         lacuna = lacuna / 1.3;
+//         if (lacuna < 1)
+//         {
+//             lacuna = 1;
+//         }
 
-        trocado = 0;
-        for (i = 0, j = i + lacuna; j < n; i++, j++)
-        { // n*n
-            if (strcmp(lista[i], lista[j]) > 0)
-            {
-                strcpy(temp, lista[i]);
-                strcpy(lista[i], lista[j]);
-                strcpy(lista[j], temp);
-                trocado = 1;
-            }
-        }
-    }
+//         trocado = 0;
+//         for (i = 0, j = i + lacuna; j < n; i++, j++)
+//         { // n*n
+//             if (strcmp(lista[i], lista[j]) > 0)
+//             {
+//                 strcpy(temp, lista[i]);
+//                 strcpy(lista[i], lista[j]);
+//                 strcpy(lista[j], temp);
+//                 trocado = 1;
+//             }
+//         }
+//     }
 
-    // abrir = fopen("pharmacy.txt", "wt");
+//     // abrir = fopen("pharmacy.txt", "wt");
 
-    // while (controle < n)
-    // {
-    //     fprintf(abrir, "%s", lista[controle]);
-    //     controle++;
-    // }
+//     // while (controle < n)
+//     // {
+//     //     fprintf(abrir, "%s", lista[controle]);
+//     //     controle++;
+//     // }
 
-    // fclose(abrir);
-}
+//     // fclose(abrir);
+// }
 
-int contador_med()
-{
+// int contador_med()
+// {
 
-    FILE *abre;
-    char linha[100];
-    int numLinhas = 0;
+//     FILE *abre;
+//     char linha[100];
+//     int numLinhas = 0;
 
-    abre = fopen("pharmacy.txt", "rt");
-    if (abre == NULL)
-    {
-        printf("ERRO ao abrir o arquivo!");
-        exit(1);
-    }
+//     abre = fopen("pharmacy.txt", "rt");
+//     if (abre == NULL)
+//     {
+//         printf("ERRO ao abrir o arquivo!");
+//         exit(1);
+//     }
 
-    while (fgets(linha, 100, abre) != NULL)
-    {
-        numLinhas++;
-    }
+//     while (fgets(linha, 100, abre) != NULL)
+//     {
+//         numLinhas++;
+//     }
 
-    fclose(abre);
+//     fclose(abre);
 
-    return (numLinhas);
-}
+//     return (numLinhas);
+// }
 
-Med *med_insere(Pharm * ph, Med *p, char name[50], char dose[50], char data[10], float preco, char recomendacao[50])
+Med *med_insere(Med *p, char name[50], char dose[50], char data[10], float preco, char recomendacao[50])
 {
 
     Med *new = (Med *)malloc(sizeof(Med));
@@ -100,7 +99,6 @@ Med *med_insere(Pharm * ph, Med *p, char name[50], char dose[50], char data[10],
     {
         new->ant = new;
     }
-    ph->num_med += 1;
     
     // FILE *pharmacy_txt;
 

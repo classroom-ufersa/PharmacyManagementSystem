@@ -1,10 +1,11 @@
 #include "pharmacy.c"
+#include "med.c"
 
 int main(void)
 {
     int opc = 0, x = 0;
     Pharm *farmacia;
-    Med *medicamento = 0;
+    Med *medicamento;
     FILE *teste;
     char pharmacy[20][100];
     int qnt_linhas; // Pharm* pharm_insere(Pharm *p, char name[50], int cod, char loc[50], char horario[50]);
@@ -14,14 +15,15 @@ int main(void)
     char horario[50];
 
     char code[50];
+    char code_pm[50];
 
     char nome_med[50];
-            char dosagem[50];
-            char data_validade[10];
-            float preco_med;
-            char recomendacao[50];
+    char dosagem[50];
+    char data_validade[10];
+    float preco_med;
+    char recomendacao[50];
 
-            Pharm * farm_p_med;
+    Pharm *farm_p_med;
 
     while (x != 1)
     {
@@ -45,32 +47,32 @@ int main(void)
             break;
 
         case 2:
-            
-
+            fflush(stdin);
             printf("informe o codigo da farmacia que deseja adicionar o medicamento:\n");
-            scanf(" %[^\n]", code);
+            scanf(" %[^\n]", code_pm);
             farm_p_med = pharm_busca(farm_p_med, code);
 
-            if (farmacia != NULL)
+            if (farm_p_med != NULL)
             {
-            printf("Para cadastra um medicamento no sistema:\ninfome o nome do medicamento:\n");
-            scanf(" %[^\n]", nome_med);
-            printf("Informe a dosagem do medicamento:\n");
-            scanf(" %[^\n]", dosagem);
-            printf("Informe a validade do medicamento:\n");
-            scanf(" %[^\n]", data_validade);
-            printf("Informe o preço do medicamento:\n");
-            scanf("%f", &preco_med);
-            printf("Informe a recomendacao do medicamento:\n");
-            scanf(" %[^\n]", recomendacao);
+                printf("Para cadastra um medicamento no sistema:\ninfome o nome do medicamento:\n");
+                scanf(" %[^\n]", nome_med);
+                printf("Informe a dosagem do medicamento:\n");
+                scanf(" %[^\n]", dosagem);
+                printf("Informe a validade do medicamento:\n");
+                scanf(" %[^\n]", data_validade);
+                printf("Informe o preço do medicamento:\n");
+                scanf("%f", &preco_med);
+                printf("Informe a recomendacao do medicamento:\n");
+                scanf(" %[^\n]", recomendacao);
 
-            med_insere(farm_p_med, medicamento, nome_med, dosagem, data_validade, preco_med, recomendacao);
+                medicamento = med_insere(medicamento, nome_med, dosagem, data_validade, preco_med, recomendacao);
+
+                farm_p_med->num_med += 1;
             }
             else
             {
                 printf("Não foi possivel acessar a farmacia! \n\n");
             }
-            
 
             break;
 
@@ -106,10 +108,11 @@ int main(void)
 
     combsort_ph(pharmacy, qnt_linhas);
     return 0;
-}char nome_med[50];
-            char dosagem[50];
-            char data_validade[10];
-            float preco_med;
-            char recomendacao[50];
+}
+char nome_med[50];
+char dosagem[50];
+char data_validade[10];
+float preco_med;
+char recomendacao[50];
 
-            Pharm * farm_p_med;
+Pharm *farm_p_med;

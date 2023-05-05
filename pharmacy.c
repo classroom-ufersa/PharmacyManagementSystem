@@ -130,7 +130,9 @@ Pharm *pharm_busca(Pharm *l, char cod[50])
     for (p = l; p != NULL; p = p->prox)
     {
         if (strcmp(p->codigo, cod) == 0)
+        {
             return p;
+        }
     }
     return NULL;
 }
