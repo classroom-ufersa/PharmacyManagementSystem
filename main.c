@@ -1,4 +1,5 @@
 #include "pharmacy.c"
+// #include "med.c"
 
 int main(void)
 {
@@ -52,7 +53,7 @@ int main(void)
             break;
         }
     }
-    qnt_linhas = contador();
+    qnt_linhas = Contador_ph();
 
     int i = 0;
 

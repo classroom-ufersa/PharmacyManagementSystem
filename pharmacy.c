@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 #include "pharmacy.h"
-#include "med.c"
 #include <ctype.h>
 
 struct pharmacy
@@ -16,7 +15,6 @@ struct pharmacy
     Pharm *ant;
     Pharm *prox;
 };
-typedef struct pharmacy Pharm;
 
 void combsort_ph(char lista[20][100], int n)
 {
@@ -59,7 +57,7 @@ void combsort_ph(char lista[20][100], int n)
     fclose(abrir);
 }
 
-int Contador_ph()
+int Contador_ph(void)
 {
 
     FILE *abre;
