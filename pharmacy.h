@@ -1,4 +1,3 @@
-typedef struct medicamento Med;
 typedef struct pharmacy Pharm;
 Pharm* pharm_insere(Pharm *p, char name[50], char cod[50], char loc[50], char horario[50]);
 Pharm *pharm_busca(Pharm *l, char cod[50]);

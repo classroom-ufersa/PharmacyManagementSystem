@@ -1,4 +1,3 @@
-#include "pharmacy.h"
 
 typedef struct medicamento Med;
 
