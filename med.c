@@ -117,7 +117,7 @@ void med_imprime(Med *p)
         printf(" Nome do remedio: %s \n", p->nome);
         printf(" Dosagem:  %s \n", p->dosagem);
         printf(" Validade: %s \n", p->data);
-        printf(" Preco: %d \n", p->preco);
+        printf(" Preco: %f \n", p->preco);
         printf(" Recomendacao: %s \n", p->recomendacao);
 }
 
