@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "pharmacy.h"
+#include "med.h"
 #include <ctype.h>
 
 struct pharmacy

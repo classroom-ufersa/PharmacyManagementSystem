@@ -1,5 +1,4 @@
 #include "pharmacy.c"
-// #include "med.c"
 
 int main(void)
 {
@@ -15,6 +14,14 @@ int main(void)
     char horario[50];
 
     char code[50];
+
+    char nome_med[50];
+            char dosagem[50];
+            char data_validade[10];
+            float preco_med;
+            char recomendacao[50];
+
+            Pharm * farm_p_med;
 
     while (x != 1)
     {
@@ -36,6 +43,37 @@ int main(void)
             farmacia = pharm_insere(farmacia, nome, codigo, localizacao, horario);
 
             break;
+
+        case 2:
+            
+
+            printf("informe o codigo da farmacia que deseja adicionar o medicamento:\n");
+            scanf(" %[^\n]", code);
+            farm_p_med = pharm_busca(farm_p_med, code);
+
+            if (farmacia != NULL)
+            {
+            printf("Para cadastra um medicamento no sistema:\ninfome o nome do medicamento:\n");
+            scanf(" %[^\n]", nome_med);
+            printf("Informe a dosagem do medicamento:\n");
+            scanf(" %[^\n]", dosagem);
+            printf("Informe a validade do medicamento:\n");
+            scanf(" %[^\n]", data_validade);
+            printf("Informe o preço do medicamento:\n");
+            scanf("%f", &preco_med);
+            printf("Informe a recomendacao do medicamento:\n");
+            scanf(" %[^\n]", recomendacao);
+
+            med_insere(farm_p_med, medicamento, nome_med, dosagem, data_validade, preco_med, recomendacao);
+            }
+            else
+            {
+                printf("Não foi possivel acessar a farmacia! \n\n");
+            }
+            
+
+            break;
+
         case 4: // to botando na 4 só para testar
             fflush(stdin);
             printf("informe o codigo da farmacia que deseja verificar:\n");
@@ -45,6 +83,7 @@ int main(void)
             break;
         case 9:
             free(farmacia);
+
             x = 1;
             break;
         default:
@@ -67,4 +106,10 @@ int main(void)
 
     combsort_ph(pharmacy, qnt_linhas);
     return 0;
-}
+}char nome_med[50];
+            char dosagem[50];
+            char data_validade[10];
+            float preco_med;
+            char recomendacao[50];
+
+            Pharm * farm_p_med;
