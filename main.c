@@ -113,10 +113,3 @@ int main(void)
     combsort_ph(pharmacy, qnt_linhas);
     return 0;
 }
-char nome_med[50];
-char dosagem[50];
-char data_validade[10];
-float preco_med;
-char recomendacao[50];
-
-Pharm *farm_p_med;
