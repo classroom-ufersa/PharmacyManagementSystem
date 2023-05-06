@@ -96,12 +96,13 @@ Pharm *pharm_insere(Pharm *p, char name[50], char cod[50], char loc[50], char ho
     strcpy(novo->localizacao, loc);
     novo->num_med = 0;
     strcpy(novo->horario, horario);
+    
     novo->prox = p;
     novo->ant = NULL;
     novo->med = NULL;
-    if (novo != NULL)
+    if (p != NULL)
     {
-        novo->ant = novo;
+        p->ant = novo;
     }
 
     FILE *pharmacy_txt;

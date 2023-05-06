@@ -1,5 +1,0 @@
-Nome: a	Codigo: 21	Localização: yhg	horario de funcionammento: ljyhf	Estoque: 0
-Nome: boco 12	Codigo: 123321	Localização: ufersa	horario de funcionammento: 24/7	Estoque: 0
-Nome: kjyhf	Codigo: 12	Localização: ikhg	horario de funcionammento: jgh	Estoque: 0
-Nome: xad	Codigo: 12	Localização: safas	horario de funcionammento: asdasd	Estoque: 0
-Nome: asfasdf	Codigo: 21	Localização: asdfasd	horario de funcionammento: asd	Estoque: 0
