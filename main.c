@@ -28,7 +28,7 @@ int main(void)
 
         // Pharm *farm_p_med;
 
-        printf("\nSistema de Gerenciamento de farmacia de medicamentos\n\n1. Adicionar farmacia\n2. Adicionar medicamento;\n3. Remover medicamento;\n4. Listar medicamentos cadastrados;\n5. Buscar medicamentos;\n6. Editar medicamento;\n7. Consultar medicamento em uma dada farmacia;\n8. consultar quantitativo de farmacia;\n9. sair\n");
+        printf("\nSistema de Gerenciamento de farmacia de medicamentos\n\n1. Adicionar farmacia\n2. Adicionar medicamento;\n3. Remover medicamento;\n4. Listar medicamentos cadastrados;\n5. Listar farmacias\n6. Buscar medicamentos;\n7. Editar medicamento;\n8. Consultar medicamento em uma dada farmacia;\n9. consultar quantitativo de farmacia;\n0. sair\n");
         scanf("%d", &opc);
         switch (opc)
 
@@ -65,7 +65,7 @@ int main(void)
                 printf("Informe a recomendacao do medicamento:\n");
                 scanf(" %[^\n]", recomendacao);
 
-                medicamento = med_insere(medicamento, nome_med, dosagem, data_validade, preco_med, recomendacao);
+                medicamento = med_insere(farmacia, nome_med, dosagem, data_validade, preco_med, recomendacao);
 
                 farmacia->num_med += 1;
             }
@@ -77,17 +77,33 @@ int main(void)
             break;
 
         case 4: // to botando na 4 só para testar
+            system("cls");
+            fflush(stdin);
+            printf("informe o codigo da farmacia que:\n");
+            scanf(" %[^\n]", code);
+            farmacia = pharm_busca(farmacia, code);
+            if (farmacia == NULL)
+            {
+                printf("\n\n farmacia nao encontrada\n");
+                break;
+            }
+            pharm_imprime(farmacia);
+            break;
+        case 5:
+            system("cls");
             fflush(stdin);
             printf("informe o codigo da farmacia que deseja verificar:\n");
             scanf(" %[^\n]", code);
             farmacia = pharm_busca(farmacia, code);
             if (farmacia == NULL)
             {
+                printf("\n\n farmacia nao encontrada\n");
                 break;
             }
             pharm_imprime(farmacia);
             break;
-        case 9:
+
+        case 0:
             free(farmacia);
 
             x = 1;

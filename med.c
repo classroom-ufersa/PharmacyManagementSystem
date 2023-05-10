@@ -79,11 +79,11 @@ Med * prox;
 //     return (numLinhas);
 // }
 
-Med *med_insere(Med *p, char name[50], char dose[50], char data[10], float preco, char recomendacao[50])
+Med *med_insere(Pharm *ph, Med * m, char name[50], char dose[50], char data[10], float preco, char recomendacao[50])
 {
 
-    Med *new = (Med *)malloc(sizeof(Med));
-    if(new==NULL){
+    Med * med = (Med *)malloc(sizeof(Med));
+    if(ph->med==NULL){
         printf("erro, por favor tente novamente!");
         exit(1);
     }
@@ -93,20 +93,20 @@ Med *med_insere(Med *p, char name[50], char dose[50], char data[10], float preco
     strcpy(new->data, data);
     new->preco = preco;
     strcpy(new->recomendacao, recomendacao);
-    new->prox = p;
+    ph->med->prox = m;
     new->ant = NULL;
-    if (p != NULL)
+    if (ph->med != NULL)
     {
-        new->ant = new;
+        ph->med->ant = ph->med;
     }
     
-    // FILE *pharmacy_txt;
+    //  FILE *pharmacy_txt;
 
-    // pharmacy_txt = fopen("Pharmacy.txt", "at");
+    //  pharmacy_txt = fopen("Pharmacy.txt", "at");
 
-    // fprintf(pharmacy_txt, "Nome: %s\tCodigo: %s\tLocalização: %s\thorario de funcionammento: %s\tEstoque: %d\n", novo->nome, novo->codigo, novo->localizacao, novo->horario, novo->num_med);
+    //  fprintf(pharmacy_txt, "\tNome: %s\n",new->nome);
 
-    // fclose(pharmacy_txt);
+    //  fclose(pharmacy_txt);
 
     return new;
 }
