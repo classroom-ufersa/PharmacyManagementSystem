@@ -86,17 +86,18 @@ Pharm *pharm_insere(Pharm *p, char name[50], char cod[50], char loc[50], char ho
 {
 
     Pharm *novo = (Pharm *)malloc(sizeof(Pharm));
-    if(novo==NULL){
+    if (novo == NULL)
+    {
         printf("erro, por favor tente novamente");
         exit(1);
     }
-        
+
     strcpy(novo->nome, name);
     strcpy(novo->codigo, cod);
     strcpy(novo->localizacao, loc);
     novo->num_med = 0;
     strcpy(novo->horario, horario);
-    
+
     novo->prox = p;
     novo->ant = NULL;
     novo->med = NULL;
@@ -118,12 +119,26 @@ Pharm *pharm_insere(Pharm *p, char name[50], char cod[50], char loc[50], char ho
 
 void pharm_imprime(Pharm *p)
 {
-        printf(" Codigo da farmacia = %s \n", p->codigo);
-        printf(" Nome da farmacia = %s \n", p->nome);
-        printf(" Localizacao da farmacia = %s \n", p->localizacao);
-        printf(" Estoque da farmacia = %d \n", p->num_med);
-        printf(" Horario de funcionamento = %s \n", p->horario);
+    printf(" Codigo da farmacia = %s \n", p->codigo);
+    printf(" Nome da farmacia = %s \n", p->nome);
+    printf(" Localizacao da farmacia = %s \n", p->localizacao);
+    printf(" Estoque da farmacia = %d \n", p->num_med);
+    printf(" Horario de funcionamento = %s \n", p->horario);
 }
+
+// void pharm_imprimeall(Pharm *l, char cod[50])
+// {
+//     Pharm *p;
+//     Med *m;
+//     for (p = l; p != NULL; p = p->prox)
+//     {
+//         for (m = l->med; m != NULL; m = m->prox)
+//         {
+
+//             printf("farmacia: %s\tremedio: %s", p->nome, m->nome);
+//         }
+//     }
+// }
 
 Pharm *pharm_busca(Pharm *l, char cod[50])
 {

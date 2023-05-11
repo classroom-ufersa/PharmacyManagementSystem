@@ -75,17 +75,47 @@ int main(void)
             }
 
             break;
-
-        case 4: // to botando na 4 só para testar
+        case 3:
             fflush(stdin);
+            char rem[50];
+            Pharm *rascunho1;
+            Med *med;
+            med = medicamento;
+            rascunho1 = farmacia;
             printf("informe o codigo da farmacia que deseja verificar:\n");
             scanf(" %[^\n]", code);
-            farmacia = pharm_busca(farmacia, code);
-            if (farmacia == NULL)
+            printf("informe o nome do remedio que deseja remover");
+            scanf(" %[^\n]", rem);
+            rascunho1 = pharm_busca(rascunho1, code);
+            med = med_busca(med, rem);
+            med_retira(med,rem);
+            break;
+
+        case 4:
+            system("cls");
+            fflush(stdin);
+            Pharm *rascunho;
+            rascunho = farmacia;
+            printf("informe o codigo da farmacia que deseja verificar:\n");
+            scanf(" %[^\n]", code);
+            rascunho = pharm_busca(rascunho, code);
+            if (rascunho == NULL)
             {
+                printf("nao foi possivel acessar a farmacia");
                 break;
             }
-            pharm_imprime(farmacia);
+
+            pharm_imprime(rascunho);
+            break;
+        case 8:
+            system("cls");
+            fflush(stdin);
+            Pharm *rasc;
+            rasc = farmacia;
+            printf("informe o codigo da farmacia que deseja verificar:\n");
+            scanf(" %[^\n]", code);
+            rasc = pharm_busca(rasc, code);
+            printf("a farmacia possui %d medicamentos",rasc->num_med);
             break;
         case 9:
             free(farmacia);
