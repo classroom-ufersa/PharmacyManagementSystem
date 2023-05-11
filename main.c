@@ -7,16 +7,17 @@ int main(void)
     char abrearquivo[50];
     int opc = 0, x = 0;
     Pharm *farmacia;
+    Pharm *rascunho;
     FILE *abre;
-    char pharmacy[20][100];
+    char pharmacy[20][500];
     int qnt_linhas; // Pharm* pharm_insere(Pharm *p, char name[50], int cod, char loc[50], char horario[50]);
     char nome[50];
-    char codigo[50];
+    int codigo;
     char localizacao[50];
     char horario[50];
 
-    char code[50];
-    char code_pm[50];
+    int code;
+    int code_pm;
 
     char nome_med[50];
     char dosagem[50];
@@ -36,7 +37,7 @@ int main(void)
             printf("Para cadastra uma farmacia no sistema:\ninfome o nome da farmacia:\n");
             scanf(" %[^\n]", nome);
             printf("Informe o codigo da farmacia:\n");
-            scanf(" %[^\n]", codigo);
+            scanf("%d", &codigo);
             printf("Informe a localizacao:\n");
             scanf(" %[^\n]", localizacao);
             printf("Informe o horario de funcionamento:\n");
@@ -46,14 +47,20 @@ int main(void)
             break;
 
         case 2:
-            // fflush(stdin);
+            rascunho = farmacia;
+            //fflush(stdin);
             printf("informe o codigo da farmacia que deseja adicionar o medicamento:\n");
-            scanf(" %[^\n]", code_pm);
-            farmacia = pharm_busca(farmacia, code_pm);
+            scanf("%d", &code_pm);
+            rascunho = pharm_busca(rascunho, code_pm);
 
-            if (farmacia != NULL)
+            if (rascunho == NULL)
             {
-                printf("Para cadastra um medicamento no sistema:\ninfome o nome do medicamento:\n");
+                printf("Nao foi possivel acessar a farmacia! \n\n");
+                break;
+            }
+            else
+            {
+                printf("Para cadastra um medicamento no sistema:\ninforme o nome do medicamento:\n");
                 scanf(" %[^\n]", nome_med);
                 printf("Informe a dosagem do medicamento:\n");
                 scanf(" %[^\n]", dosagem);
@@ -63,28 +70,23 @@ int main(void)
                 scanf("%f", &preco_med);
                 printf("Informe a recomendacao do medicamento:\n");
                 scanf(" %[^\n]", recomendacao);
-                
+
                 strcpy(abrearquivo, farmacia->nome);
                 strcat(abrearquivo, ".txt");
                 abre = fopen(abrearquivo, "at");
-                fprintf(abre,"\nmedicamento: %s",farmacia->med->nome);
-
+                fprintf(abre, "medicamento: %s", nome_med);
                 abre = fopen(abrearquivo, "rt");
-                farmacia->med = med_insere(farmacia->med, nome_med, dosagem, data_validade, preco_med, recomendacao);
+                rascunho->med = med_insere(rascunho->med, nome_med, dosagem, data_validade, preco_med, recomendacao);
                 farmacia->num_med += 1;
                 qnt_linhas = Contador_ph(farmacia->nome);
                 i = 2;
                 while (i < qnt_linhas)
                 {
-                    fgets(pharmacy[i], 100, abre);
+                    fgets(pharmacy[i], 500, abre);
                     i++;
                 }
                 combsort_ph(pharmacy, qnt_linhas, farmacia->nome);
-            }
-            else
-            {
-                printf("Nao foi possivel acessar a farmacia! \n\n");
-                break;
+
             }
 
             break;
@@ -93,7 +95,7 @@ int main(void)
             system("cls");
             fflush(stdin);
             printf("informe o codigo da farmacia que:\n");
-            scanf(" %[^\n]", code);
+            scanf("%d", &code);
             farmacia = pharm_busca(farmacia, code);
             if (farmacia == NULL)
             {
@@ -107,7 +109,7 @@ int main(void)
             system("cls");
             fflush(stdin);
             printf("informe o codigo da farmacia que deseja verificar:\n");
-            scanf(" %[^\n]", code);
+            scanf("%d", &code);
             farmacia = pharm_busca(farmacia, code);
             if (farmacia == NULL)
             {

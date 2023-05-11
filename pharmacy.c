@@ -7,7 +7,7 @@
 
 struct pharmacy
 {
-    char codigo[50];
+    int codigo;
     char nome[50];
     char localizacao[50];
     int num_med;
@@ -17,13 +17,13 @@ struct pharmacy
     Pharm *prox;
 };
 
-void combsort_ph(char lista[20][100], int n, char nome[50])
+void combsort_ph(char lista[20][500], int n, char nome[50])
 {
     FILE *abrir;
     int lacuna = n;
     int trocado = 1;
     int i, j;
-    char temp[100];
+    char temp[500];
     int controle = 0;
 
     while (lacuna > 1 || trocado == 1)
@@ -62,11 +62,11 @@ int Contador_ph(char nome[50])
 {
 
     FILE *abre;
-    char linha[100];
+    char linha[500];
     int numLinhas = 0;
 
     strcat(nome, ".txt");
-    printf("%s",nome);
+    printf("%s", nome);
     abre = fopen(nome, "rt");
     if (abre == NULL)
     {
@@ -74,7 +74,7 @@ int Contador_ph(char nome[50])
         exit(1);
     }
 
-    while (fgets(linha, 100, abre) != NULL)
+    while (fgets(linha, 500, abre) != NULL)
     {
         numLinhas++;
     }
@@ -84,7 +84,7 @@ int Contador_ph(char nome[50])
     return (numLinhas);
 }
 
-Pharm *pharm_insere(Pharm *p, char name[50], char cod[50], char loc[50], char horario[50])
+Pharm *pharm_insere(Pharm *p, char name[50], int cod, char loc[50], char horario[50])
 {
 
     Pharm *novo = (Pharm *)malloc(sizeof(Pharm));
@@ -95,7 +95,7 @@ Pharm *pharm_insere(Pharm *p, char name[50], char cod[50], char loc[50], char ho
     }
 
     strcpy(novo->nome, name);
-    strcpy(novo->codigo, cod);
+    novo->codigo = cod;
     strcpy(novo->localizacao, loc);
     novo->num_med = 0;
     strcpy(novo->horario, horario);
@@ -111,12 +111,12 @@ Pharm *pharm_insere(Pharm *p, char name[50], char cod[50], char loc[50], char ho
     FILE *pharmacy_txt;
 
     char name2[50];
-    strcpy(name2,name);
+    strcpy(name2, name);
     strcat(name2, ".txt");
 
     pharmacy_txt = fopen(name2, "wt");
 
-    fprintf(pharmacy_txt, "%s\t|nome: %s\tLocalização: %s\thorario de funcionammento: %s\n\n", novo->codigo, novo->nome, novo->localizacao, novo->horario);
+    fprintf(pharmacy_txt, "%i\t|nome: %s\tLocalização: %s\thorario de funcionammento: %s\n\n", novo->codigo, novo->nome, novo->localizacao, novo->horario);
 
     fclose(pharmacy_txt);
 
@@ -125,27 +125,29 @@ Pharm *pharm_insere(Pharm *p, char name[50], char cod[50], char loc[50], char ho
 
 void pharm_imprime(Pharm *p)
 {
-    printf(" Codigo da farmacia = %s \n", p->codigo);
+    printf(" Codigo da farmacia = %i \n", p->codigo);
     printf(" Nome da farmacia = %s \n", p->nome);
     printf(" Localizacao da farmacia = %s \n", p->localizacao);
     printf(" Estoque da farmacia = %d \n", p->num_med);
     printf(" Horario de funcionamento = %s \n", p->horario);
 }
 
-Pharm *pharm_busca(Pharm *l, char cod[50])
+Pharm *pharm_busca(Pharm *far, int cod)
 {
-    Pharm *p;
-    for (p = l; p != NULL; p = p->prox)
+    //Pharm *p;
+    // for (p = far; p != NULL; p = p->prox)
+    do
     {
-        if (strcmp(p->codigo, cod) == 0)
+        if (far->codigo == cod)
         {
-            return p;
+            return far;
         }
-    }
+        far = far->prox;
+    } while (far != NULL);
     return NULL;
 }
 
-Pharm *Pharm_retira(Pharm *l, char v[50])
+Pharm *Pharm_retira(Pharm *l, int v)
 {
     Pharm *p = pharm_busca(l, v);
 
