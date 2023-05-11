@@ -3,10 +3,11 @@
 
 int main(void)
 {
+    int i;
+    char abrearquivo[50];
     int opc = 0, x = 0;
     Pharm *farmacia;
-    Med *medicamento;
-    FILE *teste;
+    FILE *abre;
     char pharmacy[20][100];
     int qnt_linhas; // Pharm* pharm_insere(Pharm *p, char name[50], int cod, char loc[50], char horario[50]);
     char nome[50];
@@ -25,8 +26,6 @@ int main(void)
 
     while (x != 1)
     {
-
-        // Pharm *farm_p_med;
 
         printf("\nSistema de Gerenciamento de farmacia de medicamentos\n\n1. Adicionar farmacia\n2. Adicionar medicamento;\n3. Remover medicamento;\n4. Listar medicamentos cadastrados;\n5. Listar farmacias\n6. Buscar medicamentos;\n7. Editar medicamento;\n8. Consultar medicamento em uma dada farmacia;\n9. consultar quantitativo de farmacia;\n0. sair\n");
         scanf("%d", &opc);
@@ -64,19 +63,33 @@ int main(void)
                 scanf("%f", &preco_med);
                 printf("Informe a recomendacao do medicamento:\n");
                 scanf(" %[^\n]", recomendacao);
+                
+                strcpy(abrearquivo, farmacia->nome);
+                strcat(abrearquivo, ".txt");
+                abre = fopen(abrearquivo, "at");
+                fprintf(abre,"\nmedicamento: %s",farmacia->med->nome);
 
-                medicamento = med_insere(farmacia, nome_med, dosagem, data_validade, preco_med, recomendacao);
-
+                abre = fopen(abrearquivo, "rt");
+                farmacia->med = med_insere(farmacia->med, nome_med, dosagem, data_validade, preco_med, recomendacao);
                 farmacia->num_med += 1;
+                qnt_linhas = Contador_ph(farmacia->nome);
+                i = 2;
+                while (i < qnt_linhas)
+                {
+                    fgets(pharmacy[i], 100, abre);
+                    i++;
+                }
+                combsort_ph(pharmacy, qnt_linhas, farmacia->nome);
             }
             else
             {
                 printf("Nao foi possivel acessar a farmacia! \n\n");
+                break;
             }
 
             break;
 
-        case 4: // to botando na 4 só para testar
+        case 4:
             system("cls");
             fflush(stdin);
             printf("informe o codigo da farmacia que:\n");
@@ -84,6 +97,7 @@ int main(void)
             farmacia = pharm_busca(farmacia, code);
             if (farmacia == NULL)
             {
+                system("cls");
                 printf("\n\n farmacia nao encontrada\n");
                 break;
             }
@@ -97,6 +111,7 @@ int main(void)
             farmacia = pharm_busca(farmacia, code);
             if (farmacia == NULL)
             {
+                system("cls");
                 printf("\n\n farmacia nao encontrada\n");
                 break;
             }
@@ -114,18 +129,17 @@ int main(void)
             break;
         }
     }
-    qnt_linhas = Contador_ph();
-
-    int i = 0;
-
-    teste = fopen("Pharmacy.txt", "rt");
-
-    while (i < qnt_linhas)
-    {
-        fgets(pharmacy[i], 100, teste);
-        i++;
-    }
-
-    combsort_ph(pharmacy, qnt_linhas);
+    // qnt_linhas = Contador_ph(farmacia->nome);
+    // i = 1;
+    // char nome_farm[50];
+    // strcpy(nome_farm, farmacia->nome);
+    // strcat(nome_farm, ".txt");
+    // teste = fopen(nome_farm, "rt");
+    // while (i < qnt_linhas)
+    // {
+    //     fgets(pharmacy[i], 100, teste);
+    //     i++;
+    // }
+    // combsort_ph(pharmacy, qnt_linhas, farmacia->nome);
     return 0;
 }
