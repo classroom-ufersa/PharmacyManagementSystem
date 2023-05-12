@@ -17,13 +17,13 @@ struct pharmacy
     Pharm *prox;
 };
 
-void combsort_ph(char lista[20][100], int n)
+void combsort_ph(char lista[20][500], int n)
 {
     FILE *abrir;
     int lacuna = n;
     int trocado = 1;
     int i, j;
-    char temp[100];
+    char temp[500];
     int controle = 0;
 
     while (lacuna > 1 || trocado == 1)
@@ -62,7 +62,7 @@ int Contador_ph(void)
 {
 
     FILE *abre;
-    char linha[100];
+    char linha[500];
     int numLinhas = 0;
 
     abre = fopen("pharmacy.txt", "rt");
@@ -72,7 +72,7 @@ int Contador_ph(void)
         exit(1);
     }
 
-    while (fgets(linha, 100, abre) != NULL)
+    while (fgets(linha, 500, abre) != NULL)
     {
         numLinhas++;
     }
