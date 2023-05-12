@@ -10,8 +10,8 @@ char dosagem[50];
 char data[10];
 float preco;
 char recomendacao[50];
-Med* ant;
-Med * prox;
+Med* anti;
+Med * proxi;
 };
 
 // void combsort_med(char lista[20][100], int n)
@@ -93,11 +93,11 @@ Med *med_insere(Med *p, char name[50], char dose[50], char data[10], float preco
     strcpy(new->data, data);
     new->preco = preco;
     strcpy(new->recomendacao, recomendacao);
-    new->prox = p;
-    new->ant = NULL;
+    new->proxi = p;
+    new->anti = NULL;
     if (p != NULL)
     {
-        new->ant = new;
+        new->anti = new;
     }
     
     // FILE *pharmacy_txt;
@@ -113,17 +113,22 @@ Med *med_insere(Med *p, char name[50], char dose[50], char data[10], float preco
 
 void med_imprime(Med *p)
 {
+    Med *l;
+    for (l = p; l != NULL; l = l->proxi){
+
+    
         printf(" Nome do remedio: %s \n", p->nome);
         printf(" Dosagem:  %s \n", p->dosagem);
         printf(" Validade: %s \n", p->data);
         printf(" Preco: %f \n", p->preco);
         printf(" Recomendacao: %s \n", p->recomendacao);
+    }
 }
 
 Med *med_busca(Med *l, char nome[50])
 {
     Med *p;
-    for (p = l; p != NULL; p = p->prox)
+    for (p = l; p != NULL; p = p->proxi)
     {
         if (strcmp(p->nome, nome) == 0)
             return p;
@@ -136,13 +141,40 @@ Med *med_retira(Med *l, char v[50])
     Med *p = med_busca(l, v);
     
 
-    if (p->prox != NULL)
-        p->prox->ant = p->ant;
+    if (p->proxi != NULL)
+        p->proxi->anti = p->anti;
     if (l == NULL)
         return l;
     if (p == l)
-        l = p->prox;
+        l = p->proxi;
     else
-        p->ant->prox = p->prox;
+        p->anti->proxi = p->proxi;
     return l;
+    free(l);
 }
+
+void med_remove(Med **lista, Med *med)
+{
+    if (*lista == NULL) {
+        return;
+    }
+    if (*lista == med) {
+        *lista = med->proxi;
+        if (*lista != NULL) {
+            (*lista)->anti = NULL;
+        }
+    } else {
+        Med *anterior = med->anti;
+        if (anterior != NULL) {
+            anterior->proxi = med->proxi;
+        }
+
+        Med *seguinte = med->proxi;
+        if (seguinte != NULL) {
+            seguinte->anti = med->anti;
+        }
+    }
+
+    free(med);
+}
+

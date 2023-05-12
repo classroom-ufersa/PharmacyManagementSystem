@@ -126,16 +126,18 @@ void pharm_imprime(Pharm *p)
     printf(" Horario de funcionamento = %s \n", p->horario);
 }
 
-// void pharm_imprimeall(Pharm *l, char cod[50])
+// void pharm_buscain(Pharm *l, char cod[50])
 // {
 //     Pharm *p;
 //     Med *m;
 //     for (p = l; p != NULL; p = p->prox)
 //     {
-//         for (m = l->med; m != NULL; m = m->prox)
+//         for (m = p->med; m != NULL; p = m->prox)
 //         {
-
-//             printf("farmacia: %s\tremedio: %s", p->nome, m->nome);
+//             if (strcmp(m->nome, cod) == 0)
+//             {
+//                 printf("farmacia: %s\tremedio: %s\n", p->nome, m->nome);
+//             }
 //         }
 //     }
 // }
@@ -166,4 +168,17 @@ Pharm *Pharm_retira(Pharm *l, char v[50])
     else
         p->ant->prox = p->prox;
     return l;
+}
+
+void leitura(Pharm *c)
+{
+    char recebe_linhas[100];
+    int iterarnaslinhas=0;
+    FILE *abre;
+    abre = fopen("pharmacy.txt", "rt");
+    while (fgets(recebe_linhas, 100, abre) != NULL)
+    {
+        sscanf(recebe_linhas, "Nome: %s	Codigo: %s	Localização: %s	horario de funcionammento: %s	Estoque: %d", c->nome, c->codigo, c->localizacao, c->horario, &c->num_med);
+        iterarnaslinhas++; //
+    }
 }

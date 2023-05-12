@@ -5,3 +5,5 @@ Pharm *Pharm_retira(Pharm *l, char v[50]);
 void pharm_imprime(Pharm *l);
 int Contador_ph(void);
 void combsort_ph(char lista[20][100], int n);
+//void pharm_buscain(Pharm *l, char cod[50]);
+void leitura(Pharm *c);

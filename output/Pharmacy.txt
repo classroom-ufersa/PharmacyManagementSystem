@@ -1,1 +1,2 @@
-Nome: asd	Codigo: asd	Localização: asd	horario de funcionammento: asd	Estoque: 0
+Nome: luiz a	Codigo: yui	Localização: UFERSA	horario de funcionammento: 24/7	Estoque: 0
+Nome: qwe	Codigo: qwe	Localização: qwe	horario de funcionammento: qwe	Estoque: 8
