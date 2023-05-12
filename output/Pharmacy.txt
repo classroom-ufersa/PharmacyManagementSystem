@@ -1,3 +1,3 @@
-Nome: norte	Codigo: yui	Localização: centro	horario de funcionammento: 24/7	Estoque: 0
-Nome: sierra	Codigo: gk	Localização: proximo a saida	horario de funcionammento: das 7 as 19 horas	Estoque: 0
+Nome: norte	Codigo: yu	Localização: centro	horario de funcionammento: 24/7	Estoque: 7
+Nome: sierra	Codigo: gk	Localização: sul	horario de funcionammento: manhas	Estoque: 8
 	Nome: ritalina	dosagem: 10 mg	data: 2 anos	preco: 20.500000	recomendacao: uso adulto

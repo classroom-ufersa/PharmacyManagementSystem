@@ -189,12 +189,10 @@ void med_remove(Med **lista, Med *med)
 void leitura_med(Med *c)
 {
     char recebe_linhas[500];
-    int iterarnaslinhas = 0;
     FILE *abre;
     abre = fopen("pharmacy.txt", "rt");
     while (fgets(recebe_linhas, 500, abre) != NULL)
     {
         sscanf(recebe_linhas, "Nome: %s dosagem: %s data: %s    preco: %f   recomendacao: %s", c->nome, c->dosagem, c->data, c->preco, c->recomendacao);
-        iterarnaslinhas++;
     }
 }
