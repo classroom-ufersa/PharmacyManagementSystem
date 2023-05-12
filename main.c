@@ -22,6 +22,7 @@ int main(void)
     farmacia = (Pharm*)malloc(sizeof(Pharm));
     
     leitura(farmacia);
+    leitura_med(farmacia->med);
     while (x != 1)
     {
 
@@ -102,7 +103,7 @@ int main(void)
             scanf(" %[^\n]", code);
             rascunho = pharm_busca(rascunho, code);
             remedy = rascunho->med;
-            if (rascunho == NULL)
+            if (remedy == NULL)
             {
                 printf("nao foi possivel acessar a farmacia");
                 break;

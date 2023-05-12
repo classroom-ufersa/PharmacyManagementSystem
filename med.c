@@ -4,14 +4,15 @@
 #include "med.h"
 #include <ctype.h>
 
-struct medicamento{
-char nome[50];
-char dosagem[50];
-char data[10];
-float preco;
-char recomendacao[50];
-Med* anti;
-Med * proxi;
+struct medicamento
+{
+    char nome[50];
+    char dosagem[50];
+    char data[10];
+    float preco;
+    char recomendacao[50];
+    Med *anti;
+    Med *proxi;
 };
 
 // void combsort_med(char lista[20][100], int n)
@@ -83,11 +84,12 @@ Med *med_insere(Med *p, char name[50], char dose[50], char data[10], float preco
 {
 
     Med *new = (Med *)malloc(sizeof(Med));
-    if(new==NULL){
+    if (new == NULL)
+    {
         printf("erro, por favor tente novamente!");
         exit(1);
     }
-        
+
     strcpy(new->nome, name);
     strcpy(new->dosagem, dose);
     strcpy(new->data, data);
@@ -99,14 +101,14 @@ Med *med_insere(Med *p, char name[50], char dose[50], char data[10], float preco
     {
         new->anti = new;
     }
-    
-    // FILE *pharmacy_txt;
 
-    // pharmacy_txt = fopen("Pharmacy.txt", "at");
+    FILE *pharmacy_txt;
 
-    // fprintf(pharmacy_txt, "Nome: %s\tCodigo: %s\tLocalização: %s\thorario de funcionammento: %s\tEstoque: %d\n", novo->nome, novo->codigo, novo->localizacao, novo->horario, novo->num_med);
+    pharmacy_txt = fopen("Pharmacy.txt", "at");
 
-    // fclose(pharmacy_txt);
+    fprintf(pharmacy_txt, "\tNome: %s\tdosagem: %s\tdata: %s\tpreco: %f\trecomendacao: %s\n", new->nome, new->dosagem, new->data, new->preco, new->recomendacao);
+
+    fclose(pharmacy_txt);
 
     return new;
 }
@@ -114,9 +116,9 @@ Med *med_insere(Med *p, char name[50], char dose[50], char data[10], float preco
 void med_imprime(Med *p)
 {
     Med *l;
-    for (l = p; l != NULL; l = l->proxi){
+    for (l = p; l != NULL; l = l->proxi)
+    {
 
-    
         printf(" Nome do remedio: %s \n", p->nome);
         printf(" Dosagem:  %s \n", p->dosagem);
         printf(" Validade: %s \n", p->data);
@@ -139,7 +141,6 @@ Med *med_busca(Med *l, char nome[50])
 Med *med_retira(Med *l, char v[50])
 {
     Med *p = med_busca(l, v);
-    
 
     if (p->proxi != NULL)
         p->proxi->anti = p->anti;
@@ -155,22 +156,29 @@ Med *med_retira(Med *l, char v[50])
 
 void med_remove(Med **lista, Med *med)
 {
-    if (*lista == NULL) {
+    if (*lista == NULL)
+    {
         return;
     }
-    if (*lista == med) {
+    if (*lista == med)
+    {
         *lista = med->proxi;
-        if (*lista != NULL) {
+        if (*lista != NULL)
+        {
             (*lista)->anti = NULL;
         }
-    } else {
+    }
+    else
+    {
         Med *anterior = med->anti;
-        if (anterior != NULL) {
+        if (anterior != NULL)
+        {
             anterior->proxi = med->proxi;
         }
 
         Med *seguinte = med->proxi;
-        if (seguinte != NULL) {
+        if (seguinte != NULL)
+        {
             seguinte->anti = med->anti;
         }
     }
@@ -178,3 +186,15 @@ void med_remove(Med **lista, Med *med)
     free(med);
 }
 
+void leitura_med(Med *c)
+{
+    char recebe_linhas[500];
+    int iterarnaslinhas = 0;
+    FILE *abre;
+    abre = fopen("pharmacy.txt", "rt");
+    while (fgets(recebe_linhas, 500, abre) != NULL)
+    {
+        sscanf(recebe_linhas, "Nome: %s dosagem: %s data: %s    preco: %f   recomendacao: %s", c->nome, c->dosagem, c->data, c->preco, c->recomendacao);
+        iterarnaslinhas++;
+    }
+}

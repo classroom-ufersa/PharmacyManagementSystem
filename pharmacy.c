@@ -145,12 +145,16 @@ void pharm_imprime(Pharm *p)
 Pharm *pharm_busca(Pharm *l, char cod[50])
 {
     Pharm *p;
+    if(l->codigo!=NULL){
+    
     for (p = l; p != NULL; p = p->prox)
     {
         if (strcmp(p->codigo, cod) == 0)
         {
             return p;
         }
+        
+    }
     }
     return NULL;
 }
@@ -172,13 +176,14 @@ Pharm *Pharm_retira(Pharm *l, char v[50])
 
 void leitura(Pharm *c)
 {
-    char recebe_linhas[100];
+    char recebe_linhas[500];
     int iterarnaslinhas=0;
     FILE *abre;
     abre = fopen("pharmacy.txt", "rt");
-    while (fgets(recebe_linhas, 100, abre) != NULL)
+    while (fgets(recebe_linhas, 500, abre) != NULL)
     {
         sscanf(recebe_linhas, "Nome: %s	Codigo: %s	Localização: %s	horario de funcionammento: %s	Estoque: %d", c->nome, c->codigo, c->localizacao, c->horario, &c->num_med);
-        iterarnaslinhas++; //
+        
+        iterarnaslinhas++;
     }
 }

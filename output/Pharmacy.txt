@@ -1,2 +1,3 @@
-Nome: luiz a	Codigo: yui	Localização: UFERSA	horario de funcionammento: 24/7	Estoque: 0
-Nome: qwe	Codigo: qwe	Localização: qwe	horario de funcionammento: qwe	Estoque: 8
+Nome: norte	Codigo: yui	Localização: centro	horario de funcionammento: 24/7	Estoque: 0
+Nome: sierra	Codigo: gk	Localização: proximo a saida	horario de funcionammento: das 7 as 19 horas	Estoque: 0
+	Nome: ritalina	dosagem: 10 mg	data: 2 anos	preco: 20.500000	recomendacao: uso adulto
