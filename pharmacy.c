@@ -145,16 +145,16 @@ void pharm_imprime(Pharm *p)
 Pharm *pharm_busca(Pharm *l, char cod[50])
 {
     Pharm *p;
-    if(l->codigo!=NULL){
-    
-    for (p = l; p != NULL; p = p->prox)
+    if (l->codigo != NULL)
     {
-        if (strcmp(p->codigo, cod) == 0)
+
+        for (p = l; p != NULL; p = p->prox)
         {
-            return p;
+            if (strcmp(p->codigo, cod) == 0)
+            {
+                return p;
+            }
         }
-        
-    }
     }
     return NULL;
 }
@@ -182,6 +182,5 @@ void leitura(Pharm *c)
     while (fgets(recebe_linhas, 500, abre) != NULL)
     {
         sscanf(recebe_linhas, "Nome: %s	Codigo: %s	Localização: %s	horario de funcionammento: %s	Estoque: %d", c->nome, c->codigo, c->localizacao, c->horario, &c->num_med);
-        
     }
 }

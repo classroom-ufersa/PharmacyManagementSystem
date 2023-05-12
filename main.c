@@ -6,7 +6,7 @@ int main(void)
     int opc = 0, x = 0;
     Pharm *farmacia;
     FILE *teste;
-    char pharmacy[20][100];
+    char pharmacy[20][500];
     int qnt_linhas; 
     char nome[50];
     char codigo[50];
@@ -143,7 +143,7 @@ int main(void)
 
     while (i < qnt_linhas)
     {
-        fgets(pharmacy[i], 100, teste);
+        fgets(pharmacy[i], 500, teste);
         i++;
     }
 
