@@ -20,6 +20,7 @@ int main(void)
     float preco_med;
     char recomendacao[50];
     farmacia = (Pharm*)malloc(sizeof(Pharm));
+    farmacia->med = (Med*)malloc(sizeof(Med));
     
     leitura(farmacia);
     leitura_med(farmacia->med);
