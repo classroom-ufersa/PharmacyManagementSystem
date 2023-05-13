@@ -7,8 +7,8 @@ Registrar farmácias com informações como horário de funcionamento, localiza�
 # Funcionalidades
 O sistema possui as seguintes funcionalidades:
 
--Cadastrar farmácia: Permite ao usuário cadastrar uma nova farmácia informando dados como nome, código, localização, horário de funcionamento, etc.
--Adicionar medicamento: Permite ao usuário adicionar um novo medicamento em uma farmácia já cadastrada.
--Remover medicamento: Permite ao usuário remover um medicamento de uma farmácia.
--Buscar farmácia: Permite ao usuário buscar uma farmácia pelo seu código.
--Verificar o estoque de uma determinada farmácia.
+- Cadastrar farmácia: Permite ao usuário cadastrar uma nova farmácia informando dados como nome, código, localização, horário de funcionamento, etc.
+- Adicionar medicamento: Permite ao usuário adicionar um novo medicamento em uma farmácia já cadastrada.
+- Remover medicamento: Permite ao usuário remover um medicamento de uma farmácia.
+- Buscar farmácia: Permite ao usuário buscar uma farmácia pelo seu código.
+- Verificar o estoque de uma determinada farmácia.
