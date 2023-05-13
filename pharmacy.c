@@ -2,13 +2,13 @@
 #include <stdlib.h>
 #include <string.h>
 #include "pharmacy.h"
-#include "med.c"
+#include "med.h"
 #include <ctype.h>
 
 struct pharmacy
 {
+    char codigo[50];
     char nome[50];
-    int codigo;
     char localizacao[50];
     int num_med;
     char horario[50];
@@ -16,15 +16,14 @@ struct pharmacy
     Pharm *ant;
     Pharm *prox;
 };
-typedef struct pharmacy Pharm;
 
-void combSort(char lista[][50], int n)
+void combsort_ph(char lista[20][500], int n)
 {
     FILE *abrir;
     int lacuna = n;
     int trocado = 1;
     int i, j;
-    char temp[50];
+    char temp[500];
     int controle = 0;
 
     while (lacuna > 1 || trocado == 1)
@@ -59,11 +58,11 @@ void combSort(char lista[][50], int n)
     fclose(abrir);
 }
 
-int contador()
+int Contador_ph(void)
 {
 
     FILE *abre;
-    char linha[100];
+    char linha[500];
     int numLinhas = 0;
 
     abre = fopen("pharmacy.txt", "rt");
@@ -73,7 +72,7 @@ int contador()
         exit(1);
     }
 
-    while (fgets(linha, 100, abre) != NULL)
+    while (fgets(linha, 500, abre) != NULL)
     {
         numLinhas++;
     }
@@ -83,48 +82,84 @@ int contador()
     return (numLinhas);
 }
 
-Pharm *pharm_insere(Pharm *p, char name[50], int cod, char loc[50], char horario[50])
+Pharm *pharm_insere(Pharm *p, char name[50], char cod[50], char loc[50], char horario[50])
 {
 
     Pharm *novo = (Pharm *)malloc(sizeof(Pharm));
-    *novo->nome = name;
-    novo->codigo = cod;
-    *novo->localizacao = loc;
+    if (novo == NULL)
+    {
+        printf("erro, por favor tente novamente");
+        exit(1);
+    }
+
+    strcpy(novo->nome, name);
+    strcpy(novo->codigo, cod);
+    strcpy(novo->localizacao, loc);
     novo->num_med = 0;
-    *novo->horario = horario;
+    strcpy(novo->horario, horario);
+
     novo->prox = p;
     novo->ant = NULL;
+    novo->med = NULL;
     if (p != NULL)
+    {
         p->ant = novo;
+    }
+
+    FILE *pharmacy_txt;
+
+    pharmacy_txt = fopen("Pharmacy.txt", "at");
+
+    fprintf(pharmacy_txt, "Nome: %s\tCodigo: %s\tLocalização: %s\thorario de funcionammento: %s\tEstoque: %d\n", novo->nome, novo->codigo, novo->localizacao, novo->horario, novo->num_med);
+
+    fclose(pharmacy_txt);
+
     return novo;
 }
 
-void pharm_imprime(Pharm *l)
+void pharm_imprime(Pharm *p)
 {
-    Pharm *p;
-    for (p = l; p != NULL; p = p->prox)
-    {
-        printf(" Código da farmacia = %d \n", p->codigo);
-        printf(" Nome da farmacia = %d \n", p->nome);
-        printf(" Localização da farmacia = %d \n", p->localizacao);
-        printf(" Estoque da farmacia = %d \n", p->num_med);
-        printf(" Horario de funcionamento = %d \n", p->horario);
-    }
+    printf(" Codigo da farmacia = %s \n", p->codigo);
+    printf(" Nome da farmacia = %s \n", p->nome);
+    printf(" Localizacao da farmacia = %s \n", p->localizacao);
+    printf(" Estoque da farmacia = %d \n", p->num_med);
+    printf(" Horario de funcionamento = %s \n", p->horario);
 }
 
-Pharm *pharm_busca(Pharm *l, int cod)
-{
+// void pharm_buscain(Pharm *l, char cod[50])
+// {
+//     Pharm *p;
+//     Med *m;
+//     for (p = l; p != NULL; p = p->prox)
+//     {
+//         for (m = p->med; m != NULL; p = m->prox)
+//         {
+//             if (strcmp(m->nome, cod) == 0)
+//             {
+//                 printf("farmacia: %s\tremedio: %s\n", p->nome, m->nome);
+//             }
+//         }
+//     }
+// }
 
+Pharm *pharm_busca(Pharm *l, char cod[50])
+{
     Pharm *p;
-    for (p = l; p != NULL; p = p->prox)
+    if (l->codigo != NULL)
     {
-        if (p->codigo == cod)
-            return p;
+
+        for (p = l; p != NULL; p = p->prox)
+        {
+            if (strcmp(p->codigo, cod) == 0)
+            {
+                return p;
+            }
+        }
     }
     return NULL;
 }
 
-Pharm *Pharm_retira(Pharm *l, int v)
+Pharm *Pharm_retira(Pharm *l, char v[50])
 {
     Pharm *p = pharm_busca(l, v);
 
@@ -137,4 +172,15 @@ Pharm *Pharm_retira(Pharm *l, int v)
     else
         p->ant->prox = p->prox;
     return l;
+}
+
+void leitura(Pharm *c)
+{
+    char recebe_linhas[500];
+    FILE *abre;
+    abre = fopen("pharmacy.txt", "rt");
+    while (fgets(recebe_linhas, 500, abre) != NULL)
+    {
+        sscanf(recebe_linhas, "Nome: %s	Codigo: %s	Localização: %s	horario de funcionammento: %s	Estoque: %d", c->nome, c->codigo, c->localizacao, c->horario, &c->num_med);
+    }
 }

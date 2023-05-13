@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": true,
-      "cwd": "c:/Users/pedro/OneDrive/Documentos/Pharmacy Management System/PharmacyManagementSystem",
-      "program": "c:/Users/pedro/OneDrive/Documentos/Pharmacy Management System/PharmacyManagementSystem/build/Debug/outDebug",
+      "cwd": "c:/Users/pedro/OneDrive/Documentos/Pharmacy Management System/PharmacyManagementSystem-1",
+      "program": "c:/Users/pedro/OneDrive/Documentos/Pharmacy Management System/PharmacyManagementSystem-1/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

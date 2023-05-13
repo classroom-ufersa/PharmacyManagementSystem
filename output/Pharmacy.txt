@@ -1,0 +1,4 @@
+
+Nome: sierra	Codigo: gk	Localização: sul	horario de funcionammento: manhas	Estoque: 8
+Nome: norte	Codigo: yu	Localização: centro	horario de funcionammento: 24/7	Estoque: 7
+	Nome: ritalina	dosagem: 10 mg	data: 2 anos	preco: 20	recomendacao: adulto

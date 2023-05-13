@@ -1,8 +1,9 @@
-typedef struct medicamento Med;
 typedef struct pharmacy Pharm;
-Pharm* pharm_insere(Pharm *p, char name[50], int cod, char loc[50], char horario[50]);
-Pharm *pharm_busca(Pharm *l, int cod);
-Pharm *Pharm_retira(Pharm *l, int v);
+Pharm *pharm_insere(Pharm *p, char name[50], char cod[50], char loc[50], char horario[50]);
+Pharm *pharm_busca(Pharm *l, char cod[50]);
+Pharm *Pharm_retira(Pharm *l, char v[50]);
 void pharm_imprime(Pharm *l);
-int contador();
-void combSort(char lista[][50], int n);
+int Contador_ph(void);
+void combsort_ph(char lista[20][500], int n);
+// void pharm_buscain(Pharm *l, char cod[50]);
+void leitura(Pharm *c);
